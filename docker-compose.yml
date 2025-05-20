@@ -1,0 +1,49 @@
+version: "3.8"
+services:
+  postgres-user:
+    image: postgres:15
+    container_name: user-db
+    environment:
+      POSTGRES_DB: user_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: userpass
+    ports:
+      - "5433:5432"
+
+  mongo-course:
+    image: mongo:6
+    container_name: course-mongo
+    ports:
+      - "27017:27017"
+
+  mysql-auth:
+    image: mysql:8
+    container_name: auth-db
+    environment:
+      MYSQL_DATABASE: auth_db
+      MYSQL_USER: auth
+      MYSQL_PASSWORD: authpass
+      MYSQL_ROOT_PASSWORD: rootpass
+    ports:
+      - "3307:3306"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
