@@ -6,6 +6,7 @@ import com.mudemy.auth.dto.AuthResponse;
 import com.mudemy.auth.dto.LoginRequest;
 import com.mudemy.auth.dto.RegisterRequest;
 import com.mudemy.auth.dto.UserProfileRequest;
+import com.mudemy.auth.exception.EmailExistException;
 import com.mudemy.auth.exception.UserDisabledException;
 import com.mudemy.auth.exception.UserNotFoundException;
 import com.mudemy.auth.model.AuthUser;
@@ -48,6 +49,10 @@ public class AuthServiceImpl implements AuthService {
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        if (userRepository.findByEmail(request.getEmail()) != null) {
+            throw new EmailExistException("Email exist. try a different email address");
+        }
 
         Role role = new Role();
         role.setName(RoleType.ROLE_STUDENT);

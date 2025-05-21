@@ -18,3 +18,13 @@ config:
 jwt:
   secret-key: ${JWT_SECRET_KEY:defaultSecretKey}
   expiration: 3600000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+info:
+  app:
+    name: auth-service
+    description: Authentication microservice for course platform
+    version: 1.0.0
